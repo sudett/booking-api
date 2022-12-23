@@ -1,5 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
+import path from "path";
+import { fileURLToPath } from "url";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
 import cors from "cors";
@@ -9,11 +11,15 @@ import authRoute from "./routes/auth.js";
 import userRouter from "./routes/user.js";
 import roomRouter from "./routes/room.js";
 
-dotenv.config();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+dotenv.config({ path: __dirname + "/.env" });
 
 // mongodb connection
 const connect = async () => {
   try {
+    mongoose.set("strictQuery", false);
     await mongoose.connect(process.env.MONGO_URI);
     console.log("mongo connected");
   } catch (err) {
