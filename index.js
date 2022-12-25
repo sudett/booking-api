@@ -33,7 +33,7 @@ const app = express();
 
 // middlewares
 const corsOptions = {
-  origin: "http://localhost:3000",
+  origin: "https://booking-5lwh.onrender.com",
   credentials: true,
   optionSuccessStatus: 200,
 };
